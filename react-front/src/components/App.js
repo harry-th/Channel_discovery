@@ -69,7 +69,9 @@ function App() {
           x++
         }
       }
-      setSubs(prev => ({ ...prev, items: addedChannels }))
+      setTimeout(() => {
+        setSubs(prev => ({ ...prev, items: addedChannels }))
+      }, 2300);
     })
   }
 
