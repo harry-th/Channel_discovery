@@ -13,7 +13,7 @@ const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly';
 function App() {
   const [auth, setAuth] = useState(null)
   const [subs, setSubs] = useState(null)
-  const [test, setTest] = useState(0)
+  const [channel, setChannel] = useState(null)
 
   const handleCallbackResponse = (response) => {
     setAuth(response.access_token)
@@ -69,9 +69,23 @@ function App() {
           x++
         }
       }
+
       setTimeout(() => {
         setSubs(prev => ({ ...prev, items: addedChannels }))
       }, 2300);
+    })
+  }
+
+
+
+
+  const getChannelDetails = () => {
+    axios.get(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&mine=true&access_token=${auth}`)
+    .then((data) => {
+      setChannel(data.data.items[0].snippet)
+      console.log(data.data.items[0].snippet)
+    }).catch((error) => {
+      console.log(error)
     })
   }
 
@@ -81,12 +95,17 @@ function App() {
       hello
       <div>
         <button onClick={doAuth}>AUTH</button>
+        <button onClick={getChannelDetails}>Channel Details</button>
         <button onClick={getSubscriptions}>SUBS</button>
         <button onClick={testGetSUBS}>TEST</button>
         <button onClick={() => console.log(subs)}>print subs</button>
       </div>
 
       <div>
+        {channel && <div key={channel.customUrl}>
+          <h2>{channel.title}</h2>
+          <img src={channel.thumbnails.default.url}></img>
+          </div>}
         <ul>
           {subs && subs.items.map((item) => {
             return (
