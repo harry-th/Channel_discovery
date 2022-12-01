@@ -100,11 +100,11 @@ export default function RecommendChannels() {
       hello
       <div>
         <button onClick={doAuth}>AUTH</button>
-        <button onClick={getChannelDetails || getSubscriptions}>Channel Details</button>
+        <button onClick={getChannelDetails}>Channel Details</button>
         <button onClick={getSubscriptions}>SUBS</button>
         <button onClick={testGetSUBS}>TEST</button>
         <button onClick={revokeAccess}>LOG OUT</button>
-        <button onClick={console.log(auth)}>CHECK AUTH</button>
+        <button onClick={() => console.log(auth)}>CHECK AUTH</button>
 
         <button onClick={() => console.log(subs)}>print subs</button>
       </div>
