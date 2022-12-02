@@ -24,6 +24,11 @@
   color: white;
 }
 
+.navlist {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 .App-link {
   color: #61dafb;
 }

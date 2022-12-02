@@ -5,15 +5,17 @@ import Home from './Home';
 function App() {
 
   return (
-
+    <>
     <div className="App">
-      <Router>
+        <Router>
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/recommendchannels" element={<RecommendChannels />} />
         </Routes>
-      </Router>
+        </Router>
+      
     </div>
+    </>
   );
 }
 
