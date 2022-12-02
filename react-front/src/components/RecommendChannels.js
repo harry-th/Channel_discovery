@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 
 import axios from 'axios';
@@ -41,7 +41,9 @@ export default function RecommendChannels() {
     }
     getCode()
   }
-  
+
+
+  useEffect(() => { 
   const getSubscriptions = () => {
     axios.get(`https://youtube.googleapis.com/youtube/v3/subscriptions?part=snippet&mine=true&maxResults=200&access_token=${auth}`)
       .then((data) => {
@@ -61,6 +63,11 @@ export default function RecommendChannels() {
       console.log(error)
     })
   }
+  getChannelDetails()
+  getSubscriptions()
+}, [auth])
+
+  
 
   const testGetSUBS = () => {
 
@@ -105,8 +112,6 @@ export default function RecommendChannels() {
       hello
       <div>
         <button onClick={doAuth}>AUTH</button>
-        <button onClick={getChannelDetails}>Channel Details</button>
-        <button onClick={getSubscriptions}>SUBS</button>
         <button onClick={testGetSUBS}>TEST</button>
         <button onClick={revokeAccess}>LOG OUT</button>
         <button onClick={() => console.log(auth)}>CHECK AUTH</button>
@@ -134,8 +139,8 @@ export default function RecommendChannels() {
                     <img src={item.snippet.thumbnails.default.url} alt='' />
                     <h5>Sub Count: {item.statistics.subscriberCount}</h5>
                     <h5>View Count: {item.statistics.viewCount}</h5>
-                    {item.topicDetails.topicIds.map((topicId) => (
-                      <h5>{topicId}</h5>
+                    {item.topicDetails && item.topicDetails.topicCategories.map((topicId) => (
+                      <h5>{topicId.replaceAll('_', ' ').split('').splice(30, )}</h5>
                     ))}
                     </ul>
                   </div>
