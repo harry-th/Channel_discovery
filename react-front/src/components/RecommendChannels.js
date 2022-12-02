@@ -27,18 +27,21 @@ export default function RecommendChannels() {
     google.accounts.oauth2.revoke(auth);
     setAuth(null)
   }
+
   let client = google.accounts.oauth2.initTokenClient({
     scope: SCOPES,
     client_id: CLIENT_ID,
     ux_mode: 'popup',
     callback: handleCallbackResponse,
   })
+
   const doAuth = () => {
     const getCode = () => {
       client.requestAccessToken()
     }
     getCode()
   }
+  
   const getSubscriptions = () => {
     axios.get(`https://youtube.googleapis.com/youtube/v3/subscriptions?part=snippet&mine=true&maxResults=200&access_token=${auth}`)
       .then((data) => {
@@ -77,9 +80,11 @@ export default function RecommendChannels() {
           const oldEntry = { ...addedChannels[x] }
           addedChannels.splice(x, 1)
           Promise.all(channels.map((item) => {
-            return axios.get(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id=${item}&key=${API_KEY}`)
+            return axios.get(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics%2C%20topicDetails&id=${item}&key=${API_KEY}`)
           })).then((reccomendedChannels) => {
+            
             reccomendedChannels = reccomendedChannels.map((item) => {
+              console.log(item.data.items[0])
               return item.data.items[0]
             })
             addedChannels.push({ ...oldEntry, channels: reccomendedChannels })
@@ -118,11 +123,25 @@ export default function RecommendChannels() {
           {subs && subs.items.map((item) => {
             return (
               <li key={item.id}><h2>
-                {item.snippet.title}
+                Sub List: {item.snippet.title}
+                
               </h2>
                 {item.channels && item.channels.map((item) => (
-                  <p key={item.id}><img src={item.snippet.thumbnails.default.url} alt='' />  {item.snippet.title} </p>
+                  
+                  <div key={item.id}>
+                    <ul>
+                    <li>-----<h2>{item.snippet.title}</h2></li>
+                    <img src={item.snippet.thumbnails.default.url} alt='' />
+                    <h5>Sub Count: {item.statistics.subscriberCount}</h5>
+                    <h5>View Count: {item.statistics.viewCount}</h5>
+                    {item.topicDetails.topicIds.map((topicId) => (
+                      <h5>{topicId}</h5>
+                    ))}
+                    </ul>
+                  </div>
+                  
                 ))}
+                
               </li>
             )
           })}

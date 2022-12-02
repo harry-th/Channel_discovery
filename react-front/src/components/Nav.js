@@ -35,7 +35,7 @@ function Nav() {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            href="/home"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -82,7 +82,7 @@ function Nav() {
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
                     <Link 
-                      style={{ textDecoration: "none", color: "white" }}
+                      style={{ textDecoration: "none", color: "black" }}
                       to={`/${page}`}>{page}
                     </Link>
                   </Typography>
@@ -95,7 +95,7 @@ function Nav() {
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/home"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
