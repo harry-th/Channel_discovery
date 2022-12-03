@@ -361,7 +361,11 @@ export default function RecommendChannels() {
                     return <li>{topic?.topic}</li>;
                   })}
                   <div className="recommend-list">
-                    {/* {item.channels && <h5>Recommended Channels</h5>} */}
+                    {item.channels && (
+                      <h6>
+                        <strong>Recommended Channels</strong>
+                      </h6>
+                    )}
                     {item.channels &&
                       item.channels.map((item, index) => (
                         <li>
