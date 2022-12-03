@@ -3,6 +3,9 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Home.css';
+import { Pie, getElementsAtEvent } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const topics = [
   { id: "/m/04rlf", topic: "Music", parent: true },
@@ -68,7 +71,7 @@ const topics = [
   { id: "/m/06bvp", topic: "Religion" },
   { id: "/m/01k8wb", topic: "Knowledge" }
 ];
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>;
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
 const API_KEY = process.env.REACT_APP_YTAPI_KEY;
@@ -76,7 +79,7 @@ const API_KEY = process.env.REACT_APP_YTAPI_KEY;
 const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly';
 
 function Home() {
-
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>;
   <script src="https://accounts.google.com/gsi/client" async defer></script>;
   const google = window.google;
   const [auth, setAuth] = useState(null);
@@ -107,9 +110,43 @@ function Home() {
     };
     getCode();
   };
+//need two functions to create two arrays - Categories and count
+  const config = {
+    type: 'pie',
+    data: subs,
+  };
 
+  const data = {
+    labels: [
+      'Music',
+      'Gaming',
+      'Lifestyle',
+      'Sports',
+      'Entertainment',
+      'Technology',
+      'Hobby',
+      'Society'
+    ],
+    datasets: [{
+      label: 'My Categories',
+      data: [300, 50, 100, 500, 200, 100, 150, 300],
+      backgroundColor: [
+        'rgb(255, 99, 132)',
+        'rgb(54, 162, 235)',
+        'rgb(255, 205, 86)',
+        'rgb(135, 15, 86)',
+        'rgb(205, 655, 86)',
+        'rgb(125, 205, 86)',
+        'rgb(35, 205, 86)',
+        'rgb(100, 25, 86)',
+      ],
+      hoverOffset: 4
+    }]
+  };
 
-
+  // const onClick = (event) => {
+  //   console.log(getElementsAtEvent(event))
+  // }
   useEffect(() => {
     const getChannelDetails = () => {
       axios.get(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&mine=true&access_token=${auth}`)
@@ -125,84 +162,93 @@ function Home() {
       axios.get(`https://youtube.googleapis.com/youtube/v3/subscriptions?part=snippet&mine=true&maxResults=200&access_token=${auth}`)
         .then((data) => {
           let resourceIds = data.data.items.map((item) => {
-            return item.snippet.resourceId
-          })
-          console.log(data.data)
+            return item.snippet.resourceId;
+          });
+          console.log(data.data);
           Promise.all(data.data.items.map((item) => {
-            let id = item.snippet.resourceId.channelId
-            return axios.get(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet&part=statistics&part=topicDetails&id=${id}&key=${API_KEY}`)
+            let id = item.snippet.resourceId.channelId;
+            return axios.get(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet&part=statistics&part=topicDetails&id=${id}&key=${API_KEY}`);
           })).then((all) => {
             const subs = all.map((item, index) => {
-              let results = item.data.items[0]
-              results.snippet.resourceId = resourceIds[index]
-              return item.data.items[0]
-            })
-            console.log(subs)
-            setSubs(prev => subs)
-          })
+              let results = item.data.items[0];
+              results.snippet.resourceId = resourceIds[index];
+              return item.data.items[0];
+            });
+            console.log(subs);
+            setSubs(prev => subs);
+          });
         }).catch((error) => {
-          console.log(error)
-        })
-    }
+          console.log(error);
+        });
+    };
 
     getChannelDetails();
     getSubscriptions();
 
   }, [auth]);
-console.log(channel)
+  console.log(channel);
 
   return (
     <main>
       <div className="navbar-fixed">
-      <nav className="red">
-        <div className="nav-wrapper">
-          <h5 href='#!' className="left">Youtube Discovery</h5>
-          <ul className="right med-and-down">
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/recommendchannels">Recommend Channels</Link></li>
-            <li><button className="btn btn-secondary" onClick={doAuth}>Log In</button></li>
-            <li><button className="btn btn-secondary" onClick={revokeAccess}>Log Out</button></li>
-          </ul>
-        </div>
-      </nav>
+        <nav className="red">
+          <div className="nav-wrapper">
+            <h5 href='#!' className="left">Youtube Discovery</h5>
+            <ul className="right med-and-down">
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/recommendchannels">Recommend Channels</Link></li>
+              <li><button className="btn btn-secondary" onClick={doAuth}>Log In</button></li>
+              <li><button className="btn btn-secondary" onClick={revokeAccess}>Log Out</button></li>
+            </ul>
+          </div>
+        </nav>
       </div>
+
 
       <div className="mychannelinfo">
         {channel && <div key={channel.snippet.customUrl}>
           <h6 className="loggedin">Logged in as: {channel.snippet.title}</h6>
           <div className="channelinfo">
             <h3>Youtube Profile</h3>
-          <h4>{channel.snippet.title}</h4>
-          <img src={channel.snippet.thumbnails.default.url} alt='channelimg'></img>
-          <h5>Channel Details</h5>
-          <h6>Subscriber Count: {channel.statistics.subscriberCount}</h6>
-          <h6>Video Count: {channel.statistics.videoCount}</h6>
-          <h6>View Count: {channel.statistics.viewCount}</h6>
+            <h4>{channel.snippet.title}</h4>
+            <img src={channel.snippet.thumbnails.default.url} alt='channelimg'></img>
+            <h5>Channel Details</h5>
+            <h6>Subscriber Count: {channel.statistics.subscriberCount}</h6>
+            <h6>Video Count: {channel.statistics.videoCount}</h6>
+            <h6>View Count: {channel.statistics.viewCount}</h6>
           </div>
         </div>}
       </div>
- 
+
+      <div>
+        <Pie
+          options={subs}
+          data={data}
+          // onClick={onClick}
+        // {...props}/>
+        />
+      </div>
       <ul className="info-container" >
-      
-          {subs && subs.map((item, index) => {
-            return (
-              <li key={item.id + index}>
+
+        {subs && subs.map((item, index) => {
+          return (
+            <li key={item.id + index}>
               <h4>{item.snippet.title}</h4>
               <h5>Subscribers: {item.statistics.subscriberCount > 1000000 ? item.statistics.subscriberCount / 1000000 + 'M' : item.statistics.subscriberCount / 1000 + 'K'}</h5>
               <a href={`https://www.youtube.com/${item.snippet.customUrl}`}>
-              <img src={item.snippet.thumbnails.default.url} alt='' ></img>
-                </a>
-                <h6>Channel Category</h6>
-                {item?.topicDetails?.topicIds.map((item) => {
-                  let topic = topics.find((l) => l.id === item)
-                  return (
-                    <li>{topic?.topic}</li>
-                  )
-                })}
-              </li>
-            )
-          })}
-        </ul>
+                <img src={item.snippet.thumbnails.default.url} alt='' ></img>
+              </a>
+              <h6>Channel Category</h6>
+              {item?.topicDetails?.topicIds.map((item) => {
+                let topic = topics.find((l) => l.id === item);
+                return (
+                  <li>{topic?.topic}</li>
+                );
+              })}
+            </li>
+          );
+        })}
+      </ul>
     </main>
   );
 }
