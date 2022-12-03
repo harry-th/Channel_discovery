@@ -167,12 +167,17 @@ function Home() {
             <h5 href="#!" className="left">
               Youtube Discovery
             </h5>
-            <ul className="right med-and-down">
+            <ul className="left med-and-down">
               <li>
                 <Link to="/">Home</Link>
               </li>
               <li>
                 <Link to="/recommendchannels">Recommend Channels</Link>
+              </li>
+            </ul>
+            <ul className="right med-and-down">
+              <li className="loggedin">
+                {channel && <h6>{channel.snippet.title}</h6>}
               </li>
               <li>
                 <button className="btn btn-secondary" onClick={doAuth}>
@@ -192,7 +197,6 @@ function Home() {
       <div className="mychannelinfo">
         {channel && (
           <div key={channel.snippet.customUrl}>
-            <h6 className="loggedin">Logged in as: {channel.snippet.title}</h6>
             <div className="channelinfo">
               <h3>Youtube Profile</h3>
               <h4>{channel.snippet.title}</h4>

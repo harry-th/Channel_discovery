@@ -96,12 +96,14 @@ export default function RecommendChannels() {
     ux_mode: 'popup',
     callback: handleCallbackResponse,
   });
+
   const doAuth = () => {
     const getCode = () => {
       client.requestAccessToken();
     };
     getCode();
   };
+
   const getSubscriptions = () => {
     axios
       .get(
@@ -133,6 +135,7 @@ export default function RecommendChannels() {
         console.log(error);
       });
   };
+
   const testGetSUBS = () => {
     let addedChannels = [...subs];
 
@@ -277,13 +280,15 @@ export default function RecommendChannels() {
             <h5 href="#!" className="left">
               Youtube Discovery
             </h5>
-            <ul className="right med-and-down">
+            <ul className="left med-and-down">
               <li>
                 <Link to="/">Home</Link>
               </li>
               <li>
                 <Link to="/recommendchannels">Recommend Channels</Link>
               </li>
+            </ul>
+            <ul className="right med-and-down">
               <li>
                 <button className="btn btn-secondary" onClick={doAuth}>
                   Log In
