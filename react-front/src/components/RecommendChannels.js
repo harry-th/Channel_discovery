@@ -356,7 +356,7 @@ export default function RecommendChannels() {
                   </h6>
                   <img src={item.snippet.thumbnails.default.url} alt=""></img>
                   <h6>Channel Category</h6>
-                  {item?.topicDetails?.topicIds.map((item) => {
+                  {item?.topicDetails?.topicIds?.map((item) => {
                     let topic = topics.find((l) => l.id === item);
                     return <li>{topic?.topic}</li>;
                   })}
