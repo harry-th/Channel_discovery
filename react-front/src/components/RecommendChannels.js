@@ -322,13 +322,15 @@ export default function RecommendChannels() {
               return (
                 <div
                   style={{
-                    width: '120px',
+                    width: '116px',
                     height: '70px',
-                    marginTop: '220px',
+                    marginTop: '20em',
                     marginLeft: '120px',
                   }}
                 >
-                  {item.snippet.title}{' '}
+                  <h6>
+                    <strong>{item.snippet.title}</strong>{' '}
+                  </h6>
                   {item.statistics.subscriberCount > 1000000
                     ? item.statistics.subscriberCount / 1000000 + 'M'
                     : item.statistics.subscriberCount / 1000 + 'K'}{' '}
@@ -336,7 +338,7 @@ export default function RecommendChannels() {
                   <img src={item.snippet.thumbnails.default.url} alt="" />
                   {(item?.topicDetails?.topicIds || []).map((element) => {
                     let topic = topics.find((l) => l.id === element);
-                    return <span>{topic?.topic}</span>;
+                    return <li>{topic?.topic}</li>;
                   })}
                 </div>
               );
