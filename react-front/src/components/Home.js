@@ -198,7 +198,6 @@ function Home() {
         {channel && (
           <div key={channel.snippet.customUrl}>
             <div className="channelinfo">
-              <h3>Youtube Profile</h3>
               <h4>{channel.snippet.title}</h4>
               <img
                 src={channel.snippet.thumbnails.default.url}
@@ -225,7 +224,10 @@ function Home() {
                     ? item.statistics.subscriberCount / 1000000 + 'M'
                     : item.statistics.subscriberCount / 1000 + 'K'}
                 </h5>
-                <a href={`https://www.youtube.com/${item.snippet.customUrl}`}>
+                <a
+                  href={`https://www.youtube.com/${item.snippet.customUrl}`}
+                  target="_blank"
+                >
                   <img src={item.snippet.thumbnails.default.url} alt=""></img>
                 </a>
                 <h6>Channel Category</h6>

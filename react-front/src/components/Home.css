@@ -1,19 +1,25 @@
-.mychannelinfo {
+main {
   display: flex;
-  width: 100vw;
+  flex-direction: column;
 }
-
-/* .subinfo {
-  display: flex;
-} */
-
-.channelinfo {
-  background-color: rgb(211, 211, 211);
-  width: 100vw;
+.mychannelinfo {
+  background-color: #eee;
+  position: fixed;
+  width: 30%;
+  text-align: center;
+  margin-top: 4em;
 }
 
 .loggedin {
   display: flex;
   margin-right: 1em;
   margin-top: 1em;
+}
+
+.info-container {
+  background-color: rgb(243, 138, 138);
+  width: 70em;
+  height: 70%;
+  margin-left: 70%;
+  overflow: scroll;
 }
