@@ -3,11 +3,12 @@ main {
   flex-direction: column;
 }
 .mychannelinfo {
-  background-color: #eee;
+  background-color: red;
   position: fixed;
   width: 30%;
   text-align: center;
-  margin-top: 4em;
+  margin: 6em;
+  border-radius: 50% / 10%;
 }
 
 .loggedin {
@@ -17,9 +18,8 @@ main {
 }
 
 .info-container {
-  background-color: rgb(243, 138, 138);
-  width: 70em;
-  height: 70%;
+  width: 73.8em;
+  height: 81.57%;
   margin-left: 70%;
-  overflow: scroll;
+  border-style: double;
 }

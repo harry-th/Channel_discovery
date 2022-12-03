@@ -3,6 +3,11 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Home.css';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import IconButton from '@mui/material/IconButton';
+import InfoIcon from '@mui/icons-material/Info';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
 
 const topics = [
   { id: '/m/04rlf', topic: 'Music', parent: true },
@@ -212,7 +217,7 @@ function Home() {
         )}
       </div>
 
-      <ul className="info-container">
+      {/* <ul className="info-container">
         {subs &&
           subs.map((item, index) => {
             return (
@@ -238,6 +243,40 @@ function Home() {
               </li>
             );
           })}
+      </ul> */}
+
+      <ul className="info-container">
+        <ImageList sx={{ width: 1100, height: 777 }} cols={6} rowHeight={200}>
+          {subs &&
+            subs.map((item) => (
+              <ImageListItem key={item.id}>
+                <img
+                  src={`${item.snippet.thumbnails.default.url}`}
+                  alt={item.snippet.title}
+                  loading="lazy"
+                />
+                <ImageListItemBar
+                  title={item.snippet.title}
+                  subtitle={
+                    item.statistics.subscriberCount > 1000000
+                      ? item.statistics.subscriberCount / 1000000 + 'M'
+                      : item.statistics.subscriberCount / 1000 + 'K'
+                  }
+                  actionIcon={
+                    <IconButton
+                      sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
+                      aria-label={item?.topicDetails?.topicIds?.map((item) => {
+                        let topic = topics.find((l) => l.id === item);
+                        return <li>{topic?.topic}</li>;
+                      })}
+                    >
+                      <InfoIcon />
+                    </IconButton>
+                  }
+                />
+              </ImageListItem>
+            ))}
+        </ImageList>
       </ul>
     </main>
   );
