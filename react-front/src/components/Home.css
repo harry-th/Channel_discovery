@@ -1,0 +1,17 @@
+.mychannelinfo {
+  display: flex;
+  width: 100vw;
+}
+
+/* .subinfo {
+  display: flex;
+} */
+
+.channelinfo {
+  background-color: rgb(211, 211, 211);
+  width: 100vw;
+}
+
+.loggedin {
+  display: flex;
+}

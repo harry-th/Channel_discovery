@@ -1,0 +1,21 @@
+.buttons {
+  display: grid;
+  margin-top: 5em;
+  width: 250px;
+}
+
+.info-container {
+  margin-top: 5em;
+  display: inline-table;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.recommend-list {
+  margin-top: fixed;
+}
+
+img {
+  border-radius: 50%;
+}

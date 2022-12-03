@@ -1,7 +1,11 @@
+import React from 'react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
+import './RecommendChannels.css';
 
-/* global google */
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>;
+
 const topics = [
   { id: '/m/04rlf', topic: 'Music', parent: true },
   { id: '/m/02mscn', topic: 'Christian music' },
@@ -66,15 +70,21 @@ const topics = [
   { id: '/m/06bvp', topic: 'Religion' },
   { id: '/m/01k8wb', topic: 'Knowledge' },
 ];
-
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
 const API_KEY = process.env.REACT_APP_YTAPI_KEY;
-const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly';
 
+const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly';
+/* global google */
 export default function RecommendChannels() {
   const [auth, setAuth] = useState(null);
   const [subs, setSubs] = useState(null);
   const [reccomended, setReccomendeded] = useState(null);
+
+  const revokeAccess = () => {
+    google.accounts.oauth2.revoke(auth);
+    setAuth(null);
+    setSubs(null);
+  };
 
   const handleCallbackResponse = (response) => {
     setAuth(response.access_token);
@@ -251,21 +261,53 @@ export default function RecommendChannels() {
       return [...prev.sort((a, b) => (b?.count || 0) - (a?.count || 0))];
     });
   };
+
+  const getEverything = () => {
+    getSubscriptions();
+    testGetReccomends();
+    testGetSUBS();
+    getAllReccomended();
+  };
+
   return (
     <div className="App">
-      hello
-      <div>
-        <button onClick={doAuth}>AUTH</button>
+      <div className="navbar-fixed">
+        <nav className="red">
+          <div className="nav-wrapper">
+            <h5 href="#!" className="left">
+              Youtube Discovery
+            </h5>
+            <ul className="right med-and-down">
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/recommendchannels">Recommend Channels</Link>
+              </li>
+              <li>
+                <button className="btn btn-secondary" onClick={doAuth}>
+                  Log In
+                </button>
+              </li>
+              <li>
+                <button className="btn btn-secondary" onClick={revokeAccess}>
+                  Log Out
+                </button>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div className="buttons">
         <button onClick={getSubscriptions}>SUBS</button>
         <button onClick={testGetReccomends}>RECCO</button>
         <button onClick={testGetSUBS}>TESTSUBS</button>
         <button onClick={getAllReccomended}>GET ALL RECCOMENDED</button>
         <button onClick={orderBySubs}>ORDER BY SUBCOUNT </button>
         <button onClick={orderByCount}>ORDER BY COUNT </button>
-        <button onClick={() => console.log(subs, reccomended)}>
-          print subs
-        </button>
+        <button onClick={getEverything}>Get All</button>
       </div>
+
       <div>
         <div
           style={{
@@ -300,32 +342,42 @@ export default function RecommendChannels() {
               );
             })}
         </div>
-        <ul>
+        <ul className="info-container">
           {subs &&
             subs.map((item, index) => {
               return (
                 <li key={item.id + index}>
-                  <h2>
-                    {item.snippet.title}{' '}
+                  <h5>{item.snippet.title}</h5>
+                  <h6>
+                    Subscribers:{' '}
                     {item.statistics.subscriberCount > 1000000
                       ? item.statistics.subscriberCount / 1000000 + 'M'
                       : item.statistics.subscriberCount / 1000 + 'K'}
-                  </h2>
-                  {item?.topicDetails?.topicIds?.map((item) => {
+                  </h6>
+                  <img src={item.snippet.thumbnails.default.url} alt=""></img>
+                  <h6>Channel Category</h6>
+                  {item?.topicDetails?.topicIds.map((item) => {
                     let topic = topics.find((l) => l.id === item);
-                    return <p>{topic.topic}</p>;
+                    return <li>{topic?.topic}</li>;
                   })}
-                  {item.channels && <h4>reccomendedChannels</h4>}
-                  {item.channels &&
-                    item.channels.map((item, index) => (
-                      <p key={item.id + index}>
-                        <img src={item.snippet.thumbnails.default.url} alt="" />{' '}
-                        {item.snippet.title}{' '}
-                        {item.statistics.subscriberCount > 1000000
-                          ? item.statistics.subscriberCount / 1000000 + 'M'
-                          : item.statistics.subscriberCount / 1000 + 'K'}
-                      </p>
-                    ))}
+                  <div className="recommend-list">
+                    {/* {item.channels && <h5>Recommended Channels</h5>} */}
+                    {item.channels &&
+                      item.channels.map((item, index) => (
+                        <li>
+                          <h6>
+                            {item.snippet.title}{' '}
+                            {item.statistics.subscriberCount > 1000000
+                              ? item.statistics.subscriberCount / 1000000 + 'M'
+                              : item.statistics.subscriberCount / 1000 + 'K'}
+                          </h6>
+                          <img
+                            src={item.snippet.thumbnails.default.url}
+                            alt=""
+                          ></img>
+                        </li>
+                      ))}
+                  </div>
                   {item.subscriptions && <h4>Subscriptions</h4>}
                   {item.subscriptions &&
                     item.subscriptions.map((item, index) => (
