@@ -18,8 +18,14 @@ main {
 }
 
 .info-container {
+  position: fixed;
   width: 73.8em;
   height: 81.57%;
-  margin-left: 70%;
+  margin-top: 7%;
+  margin-left: 40%;
   border-style: double;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
