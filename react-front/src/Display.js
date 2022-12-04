@@ -3,7 +3,7 @@ import styles from './Display.module.css';
 import SubItem from './SubItem';
 import { useRef } from 'react';
 import { Pie, getElementsAtEvent } from 'react-chartjs-2';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, Chart } from 'chart.js';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function Display({ subs, setHovered }) {
@@ -29,19 +29,26 @@ export default function Display({ subs, setHovered }) {
     }
   };
 
+  // Chart.overrides['pie'].plugins.legend = {
+  //   options: {
+  //     plugins: {
+  //       legend: {
+  //         labels: {
+  //           position: 'left',
+  //           usePointStyle: true,
+  //           pointStyle: 'circle'
+  //         }
+  //       }
+  //     }
+  //   }
+  // };
 
   const config = {
     type: 'pie',
     data: subs,
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'left',
-        }
-      }
-    }
   }
+
+
   const data = {
     labels: [
       'Music',
