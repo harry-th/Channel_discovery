@@ -43,8 +43,7 @@
   flex-direction: column;
 }
 .display .usercolumn .chart {
-  height: 20vh;
-  text-align: center;
+  width: 150px;
 }
 .display .usercolumn .user {
   height: 50vh;

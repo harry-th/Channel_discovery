@@ -1,8 +1,8 @@
 import './App.css';
 import { useState } from 'react';
 import axios from 'axios';
-import styles from './Display.module.css'
-import Display from './Display';
+import styles from '../Display.module.css'
+import Display from '../Display';
 
 
 
