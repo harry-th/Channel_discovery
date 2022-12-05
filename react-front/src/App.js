@@ -264,7 +264,7 @@ function App() {
                   video count: {hovered.videoCount}
                   <p>categories:</p>
                   <div>
-                    {hovered.categories.map((item) => {
+                    {hovered.categories?.map((item) => {
                       let topic = topics.find((l) => l.id === item)
                       return (
                         <p>{topic && topic.topic}</p>
