@@ -32,7 +32,7 @@ export default function Home({ subs, hovered, setHovered, topics, channel, recco
                                 <img src={hovered.thumbnail} alt='' />
                                 <h3 className={styles.subName}>{hovered.title}</h3>
                                 <div className={styles.subInfo}>
-                                    <p>{hovered.description}</p>
+                                    <p>{hovered.description}</p> 
                                     <b>Subscriber count:</b> {hovered.subCount > 1000000 ? hovered.subCount / 1000000 + 'M' : hovered.subCount > 1000 && hovered.subCount < 1000000 ? hovered.subCount / 1000 + 'K' : hovered.subCount}
                                     <hr />
                                     <b>Video count:</b> {hovered.videoCount}
