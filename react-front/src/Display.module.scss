@@ -4,8 +4,7 @@
   align-items: center;
   width: 100%;
   height: 100vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)),
-    url("./assets/bgpic.jpg");
+  background: #5D5C61;
   .landingpage {
     height: 100vh;
     width: 100%;
@@ -19,7 +18,7 @@
       left: 50%;
       padding: 20px;
       transform: translate(-50%, 0);
-      color: white;
+      color: #000000;
     }
     .landingbutton {
       position: fixed;
@@ -36,14 +35,13 @@
       justify-content: center;
       padding-top: 4em;
       gap: 50px;
-      color: white;
+      color: rgb(212, 212, 212);
     }
     .lowerContainer {
       display: flex;
       flex-direction: row;
       justify-content: center;
-
-      color: white;
+      color: rgb(212, 212, 212);
     }
 
     .icon {
@@ -52,7 +50,7 @@
     }
     .featureTitle {
       padding-top: 0.2em;
-      color: white;
+      color: #000000;
     }
     .homeImage {
       width: 22%;
@@ -81,20 +79,23 @@
   }
   .legend {
     margin: 1%;
-    background-color: antiquewhite;
+    background-color: #938e93;
     width: 20%;
     min-width: 20%;
     overflow: scroll;
-    border: 3px solid white;
+    border: 2px solid rgb(208, 208, 208);
     .insert {
+      border-style: solid;
       text-align: center;
       margin-right: 20px;
       margin-left: 20px;
+      
+      
       div {
         padding: 5px;
         &:hover {
           cursor: pointer;
-          background-color: green;
+          background-color: #557A95;
         }
       }
     }
@@ -102,19 +103,20 @@
       display: flex;
       padding: 5px;
       justify-content: center;
+      color: rgb(212, 212, 212);
       .toggleUser {
         .userButton {
           width: 7em;
-          background-color: white;
+          background-color: rgb(208, 208, 208);
           &.on {
-            background-color: green;
+            background-color: #557A95;;
           }
         }
         .hoverButton {
           width: 7em;
-          background-color: white;
+          background-color: rgb(208, 208, 208);
           &.on {
-            background-color: green;
+            background-color: #557A95;;
           }
         }
       }
@@ -123,6 +125,8 @@
       word-wrap: break-word;
       margin: 1em;
       img {
+        display: block;
+        
         border-radius: 8px;
         margin-left: 1em;
       }
@@ -132,6 +136,8 @@
     }
     .subName {
       vertical-align: top;
+      font-weight: bold;
+     
     }
     .reccomended {
       .subscriptions,
@@ -148,7 +154,7 @@
             display: block;
             position: absolute;
             background-color: black;
-            color: wheat;
+            color: #557A95;;
             margin-top: 10px;
             margin-left: 16px;
           }
@@ -167,8 +173,9 @@
 }
 .outerdisplay {
   width: 80%;
-  border: 4px solid white;
-  background-color: antiquewhite;
+  border: 2px solid rgb(208, 208, 208);
+  background-color: #938e93;
+  
   margin: 3%;
   .categorySection {
     display: flex;
@@ -181,10 +188,12 @@
     width: 100%;
     height: 100%;
     .titleBlock {
-      width: 150px;
-      height: 150px;
+      text-align: center;
+      width: 100%;
+      height: 65px;
       word-wrap: break-word;
       line-height: 35px;
+      color: #000000;
       h3 {
         vertical-align: text-top;
       }
@@ -196,7 +205,7 @@
       transition: 0.1s;
       img {
         width: 100px;
-        border: 2px solid white;
+        border: 2px solid rgb(208, 208, 208);
         cursor: pointer;
       }
       p {
@@ -222,47 +231,53 @@
     flex-direction: column;
     .chart {
       height: 50vh;
-      width: 280px;
+      width: 19vw;
       margin: 10px;
+      
     }
     .user {
-      height: 25vh;
+      height: 5vh;
       text-align: center;
-      border: 2px solid black;
+      border: 2px solid rgb(208, 208, 208);
       div {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 100%;
         height: 100%;
-        background-color: green;
+        background-color: rgb(208, 208, 208);
         &:hover {
           cursor: pointer;
-          background-color: wheat;
+          background-color:#557A95;
         }
       }
     }
   }
   .insert {
     width: 8%;
-    margin-top: 40%;
+    margin-top: 35%;
     margin-bottom: 12%;
-    border: 2px solid black;
+    border: 2px solid rgb(208, 208, 208);
     text-align: center;
     height: fit-content;
     padding: 10px;
     div {
+ 
       margin-top: 5px;
-      background-color: green;
+      background-color: rgb(208, 208, 208);
       padding: 5px;
       font-size: 80%;
       &:hover {
         cursor: pointer;
-        background-color: wheat;
+        background-color:#557A95;
       }
     }
+
   }
 
+  .legendTitle {
+    color: #000000;
+  }
   .subcolumn {
     display: flex;
     justify-content: center;

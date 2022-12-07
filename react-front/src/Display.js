@@ -62,6 +62,7 @@ export default function Display({ subs, setHovered, reccomendedOrder, reccomende
                         <div className={styles.chart}>
                             <Pie
                                 options={{
+                                  color: '#FFFFFF',
                                     plugins: {
                                         legend: {
                                             position: 'bottom',

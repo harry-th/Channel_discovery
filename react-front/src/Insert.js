@@ -52,12 +52,14 @@ export default function Insert({ subs, setOrderedSubs, reccomended }) {
 
     return (
         <div className={styles.insert}>
+            <h3 className={styles.legendTitle}><u>Legend</u></h3>
             <div onClick={() => orderSubs('default')}>Default</div>
             <div onClick={() => orderSubs('subscriber-count')}>By Subs</div>
             {reccomended && <div onClick={() => orderSubs('by-duplicate')}>By Duplicates</div>}
-            <div onClick={() => orderSubs('by-category')}>ByCategory</div>
-            {reccomended && <div onClick={() => orderSubs('by-creator')}>ByCreator</div>}
-            {reccomended && <div onClick={() => orderSubs('reset')}>Back to Subs</div>}
+            <div onClick={() => orderSubs('by-category')}>By Category</div>
+            {reccomended && <div onClick={() => orderSubs('by-creator')}>By Creator</div>}
+            <br></br>
+            {reccomended && <div onClick={() => orderSubs('reset')}>Back to Home</div>}
 
         </div>
     )

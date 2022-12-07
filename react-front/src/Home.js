@@ -30,7 +30,7 @@ export default function Home({ subs, hovered, setHovered, topics, channel, recco
                         {hovered.hovering ?
                             <div className={styles.legendSection}>
                                 <img src={hovered.thumbnail} alt='' />
-                                <span className={styles.subName}>{hovered.title}</span>
+                                <h3 className={styles.subName}>{hovered.title}</h3>
                                 <div className={styles.subInfo}>
                                     <p>{hovered.description}</p>
                                     Subscriber count: {hovered.subCount > 1000000 ? hovered.subCount / 1000000 + 'M' : hovered.subCount > 1000 && hovered.subCount < 1000000 ? hovered.subCount / 1000 + 'K' : hovered.subCount}
@@ -47,7 +47,7 @@ export default function Home({ subs, hovered, setHovered, topics, channel, recco
                                     </div>
                                     <div>
                                         <p>Subbed to/Reccomended by:</p>
-                                        {hovered.from && hovered.from}
+                                        <b>{hovered.from && hovered.from}</b>
                                     </div>
                                     <div className={styles.reccomended}>
                                         {hovered.subscriptions[0] !== 'none' &&

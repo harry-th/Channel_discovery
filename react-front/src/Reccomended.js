@@ -7,9 +7,9 @@ export default function Reccomended({ orderedSubs, setHovered, setToggleHover, h
     return (
         <div className={styles.reccomended}>
             <div className={styles.titleBlock}>
-                <h3>Reccomended
+                <h2>Reccomended
                     and Subscribed
-                    to Channels:</h3>
+                    to Channels:</h2>
             </div>
             {orderedSubs && Array.isArray(orderedSubs) ? orderedSubs.map((item) => {
                 return (
