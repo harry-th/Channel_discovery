@@ -33,10 +33,10 @@ export default function Home({ subs, hovered, setHovered, topics, channel, recco
                                 <h3 className={styles.subName}>{hovered.title}</h3>
                                 <div className={styles.subInfo}>
                                     <p>{hovered.description}</p>
-                                    Subscriber count: {hovered.subCount > 1000000 ? hovered.subCount / 1000000 + 'M' : hovered.subCount > 1000 && hovered.subCount < 1000000 ? hovered.subCount / 1000 + 'K' : hovered.subCount}
+                                    <b>Subscriber count:</b> {hovered.subCount > 1000000 ? hovered.subCount / 1000000 + 'M' : hovered.subCount > 1000 && hovered.subCount < 1000000 ? hovered.subCount / 1000 + 'K' : hovered.subCount}
                                     <hr />
-                                    Video count: {hovered.videoCount}
-                                    <p>Categories:</p>
+                                    <b>Video count:</b> {hovered.videoCount}
+                                    <p><b>Categories:</b></p>
                                     <div>
                                         {hovered.categories.map((item) => {
                                             let topic = topics.find((l) => l.id === item)
