@@ -27,7 +27,7 @@ const testGetSUBS = (subs, setSubs, api_key) => {
         } else {
             setTimeout(() => {
                 wait(callback)
-            }, 2000)
+            }, 250)
         }
     }
     wait(() => testGetReccomends(addedChannels, setSubs, api_key))
@@ -45,7 +45,6 @@ const testGetReccomends = (addedSubs, setSubs, api_key) => {
         let x = 0
         for (let i = 0; i < all.length; i++) {
             let channels = all[i].data.items.find((item => item.contentDetails?.channels))?.contentDetails?.channels
-
             if (channels) {
                 const oldEntry = { ...addedChannels[x] }
                 addedChannels.splice(x, 1)
@@ -67,7 +66,7 @@ const testGetReccomends = (addedSubs, setSubs, api_key) => {
             } else {
                 setTimeout(() => {
                     wait(callback)
-                }, 2000)
+                }, 250)
             }
         }
         wait(() => setSubs(addedChannels))
