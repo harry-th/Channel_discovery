@@ -1,6 +1,6 @@
 # Channel_discovery
 This project is one that can access your subscriber list on youtuber and then pull and organize the 'reccomended channels' and 'subscriptions'
-channel lists hosted on your subscriptions` 'channel lists'
+channel lists hosted on your subscriptions 'channel lists'
 To run this project
 first clone it https://github.com/harry-th/Channel_discovery
 and then install dependencies
