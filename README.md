@@ -1,3 +1,5 @@
+## final project for lighthouse bootcamp
+I led and organized our team, determined our approach to the api and structured the react layout and state/prop logic.
 # Channel_discovery
 This project is one uses the YouTube API to recommend channels
 
