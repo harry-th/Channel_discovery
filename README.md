@@ -1,5 +1,5 @@
 ## final project for lighthouse bootcamp
-I led and organized our team, determined our approach to the api and structured the react layout and state/prop logic.
+I led and organized our team, determined our approach to the api and structured the react layout and state/prop logic. This was built in approximately a week with 3 team members.
 # Channel_discovery
 This project is one uses the YouTube API to recommend channels
 
